@@ -1,8 +1,3 @@
-// Единые стили для notched-outline
-// Используется в текстовых полях и селектах
-// Единый подход: box-shadow + grid layout
-
-// Базовые стили для всех notched-outline
 .notched-outline {
   position: absolute;
   inset: 0;
@@ -35,27 +30,12 @@
   }
 }
 
-// Flex layout для текстовых полей
-.text-field-container .notched-outline {
-  display: flex;
-
-  &__notch {
-    flex: 0 0 auto;
-  }
-
-  &__trailing {
-    flex-grow: 1;
-  }
-}
-
-// Grid layout для селектов
-.select-option .notched-outline {
+.field-container .notched-outline {
   display: grid;
   grid-template: 1fr / 12px auto 1fr;
   gap: 0;
 }
 
-// Единые стили для всех компонентов с box-shadow
 .notched-outline {
   &__leading {
     box-shadow:
@@ -92,50 +72,25 @@
   }
 }
 
-// Специфичные стили для текстовых полей
-.text-field-container {
+// Переменные для текстовых полей (input, textarea)
+.input,
+.textarea {
   --notch-outline-width: var(--tf-border-width-inactive, 1px);
   --notch-outline-color: var(--form-color-outline);
   --notch-border-radius: var(--tf-border-radius, 6px);
   --notch-transition-easing: var(--tf-transition-easing, cubic-bezier(0, 0.202, 0.204, 1));
-
-  &:hover {
-    --notch-outline-color: var(--form-color-outline-hover);
-  }
-
-  .input--focused &,
-  .textarea--focused & {
-    --notch-outline-width: var(--tf-border-width-active, 2px);
-    --notch-outline-color: var(--form-color-outline-opened);
-  }
-
-  .input--filled &,
-  .textarea--filled & {
-    --notch-outline-width: var(--tf-border-width-active, 2px);
-    --notch-outline-color: var(--form-color-activated);
-  }
-
-  .input--error &,
-  .textarea--error & {
-    --notch-outline-color: var(--form-color-error);
-  }
-
-  .input--disabled &,
-  .textarea--disabled & {
-    --notch-outline-color: var(--form-color-disabled);
-  }
 }
 
-// Специфичные стили для селектов
-.select-option {
+// Переменные для select полей
+.select {
   --notch-outline-width: var(--so-width-outline, 1px);
   --notch-outline-color: var(--form-color-outline);
   --notch-border-radius: var(--so-border-radius-select, 5.5px);
   --notch-transition-easing: cubic-bezier(0, 0.202, 0.204, 1);
 
   &--labeled {
-    &.select-option--opened .notched-outline__notch,
-    &.select-option--selected .notched-outline__notch {
+    &.select--opened .notched-outline__notch,
+    &.select--selected .notched-outline__notch {
       box-shadow: inset 0 calc(var(--notch-outline-width) * -1) 0 0 var(--notch-outline-color);
     }
   }
@@ -149,7 +104,7 @@
   &:not(&--opened):hover {
     --notch-outline-color: var(--form-color-outline-hover);
 
-    &.select-option--mobile {
+    &.select--mobile {
       --notch-outline-color: var(--form-color-outline-opened);
       --notch-outline-width: 2px;
     }
@@ -158,5 +113,37 @@
   &--opened {
     --notch-outline-color: var(--form-color-outline-opened);
     --notch-outline-width: 2px;
+  }
+}
+
+// Состояния для текстовых полей
+.field-container {
+  &:hover {
+    .input:not(.input--error, .input--disabled, .input--focused),
+    .textarea:not(.textarea--error, .textarea--disabled, .textarea--focused) {
+      --notch-outline-color: var(--form-color-outline-hover);
+    }
+  }
+
+  .input--focused,
+  .textarea--focused {
+    --notch-outline-width: var(--tf-border-width-active, 2px);
+    --notch-outline-color: var(--form-color-outline-opened);
+  }
+
+  .input--filled,
+  .textarea--filled {
+    --notch-outline-width: var(--tf-border-width-active, 2px);
+    --notch-outline-color: var(--form-color-activated);
+  }
+
+  .input--error,
+  .textarea--error {
+    --notch-outline-color: var(--form-color-error);
+  }
+
+  .input--disabled,
+  .textarea--disabled {
+    --notch-outline-color: var(--form-color-disabled);
   }
 }

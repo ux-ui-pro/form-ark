@@ -13,19 +13,21 @@ export class Select {
   private mobileMode: boolean = false;
 
   private static CLASSES = {
-    selectContainer: 'select-option-container',
-    selectOption: 'select-option',
+    selectContainer: 'field-container',
+    selectOption: 'select',
     floatingLabel: 'floating-label',
     selectOptionTrigger: 'select-option-trigger',
     selectOptionList: 'select-option-list',
     selectOptionListItem: 'select-option-list-item',
     selectOptionListItemSelected: 'select-option-list-item--selected',
-    selectOptionOpened: 'select-option--opened',
-    selectOptionMobile: 'select-option--mobile',
-    selectOptionSelected: 'select-option--selected',
-    selectOptionLabeled: 'select-option--labeled',
-    selectOptionUnlabeled: 'select-option--unlabeled',
-    selectOptionDownstairs: 'select-option--downstairs',
+    selectOptionOpened: 'select--opened',
+    selectOptionMobile: 'select--mobile',
+    selectOptionSelected: 'select--selected',
+    selectOptionLabeled: 'select--labeled',
+    selectOptionUnlabeled: 'select--unlabeled',
+    selectOptionDownstairs: 'select--downstairs',
+    notchedOutline: 'notched-outline',
+    notchedOutlineNotch: 'notched-outline__notch',
   };
 
   constructor({ mobileMode = false }: SelectOptionsConfig = {}) {

@@ -1,4 +1,4 @@
-.select-option {
+.select {
   .select-option-trigger {
     max-width: 100%;
     height: 48px;
@@ -11,7 +11,7 @@
     color: var(--so-color-trigger, Gray);
   }
 
-  &.select-option--dense .select-option-trigger {
+  &.select--dense .select-option-trigger {
     height: 36px;
     line-height: 36px;
   }

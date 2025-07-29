@@ -1,0 +1,104 @@
+// Примеры использования CSS Grid для notched outline
+// Демонстрирует различные варианты grid layout
+
+// Базовый grid layout (используется по умолчанию)
+.unified-notched-outline {
+  display: grid;
+  grid-template: 1fr / 12px auto 1fr;
+  gap: 0;
+}
+
+// Альтернативные варианты grid layout
+
+// Вариант с увеличенной левой колонкой
+.notched-outline--wide-leading {
+  display: grid;
+  grid-template: 1fr / 16px auto 1fr;
+  gap: 0;
+}
+
+// Вариант с уменьшенной левой колонкой
+.notched-outline--narrow-leading {
+  display: grid;
+  grid-template: 1fr / 8px auto 1fr;
+  gap: 0;
+}
+
+// Вариант с фиксированной шириной центральной колонки
+.notched-outline--fixed-notch {
+  display: grid;
+  grid-template: 1fr / 12px 100px 1fr;
+  gap: 0;
+}
+
+// Вариант с отступами между колонками
+.notched-outline--with-gaps {
+  display: grid;
+  grid-template: 1fr / 12px auto 1fr;
+  gap: 2px;
+}
+
+// Адаптивный grid layout
+.notched-outline--responsive {
+  display: grid;
+  grid-template: 1fr / minmax(8px, 16px) auto 1fr;
+  gap: 0;
+}
+
+// Grid layout для мобильных устройств
+@media (max-width: 768px) {
+  .notched-outline--mobile {
+    display: grid;
+    grid-template: 1fr / 8px auto 1fr;
+    gap: 0;
+  }
+}
+
+// Grid layout для планшетов
+@media (min-width: 769px) and (max-width: 1024px) {
+  .notched-outline--tablet {
+    display: grid;
+    grid-template: 1fr / 10px auto 1fr;
+    gap: 0;
+  }
+}
+
+// Grid layout для десктопов
+@media (min-width: 1025px) {
+  .notched-outline--desktop {
+    display: grid;
+    grid-template: 1fr / 14px auto 1fr;
+    gap: 0;
+  }
+}
+
+// Примеры использования с CSS переменными
+.notched-outline--custom {
+  display: grid;
+  grid-template: 1fr / var(--leading-width, 12px) auto 1fr;
+  gap: var(--grid-gap, 0);
+}
+
+// Пример с кастомными переменными
+.custom-notched-outline {
+  --leading-width: 20px;
+  --grid-gap: 4px;
+  
+  display: grid;
+  grid-template: 1fr / var(--leading-width) auto 1fr;
+  gap: var(--grid-gap);
+}
+
+// Пример для полей с иконками
+.notched-outline--with-icon {
+  display: grid;
+  grid-template: 1fr / 48px auto 1fr; // Увеличиваем левую колонку для иконки
+  gap: 0;
+}
+
+// Пример для полей с двумя иконками
+.notched-outline--with-two-icons {
+  display: grid;
+  grid-template: 1fr / 48px auto 48px; // Фиксированные колонки для иконок
+  gap: 0;
+} 

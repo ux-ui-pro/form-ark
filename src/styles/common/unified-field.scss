@@ -1,0 +1,322 @@
+// Общие стили для всех типов полей (input, textarea, select)
+// Объединяет поведение notched outline и floating label
+
+// Базовые переменные для унифицированных стилей
+:root {
+  --unified-field-border-radius: 6px;
+  --unified-field-border-width: 1px;
+  --unified-field-border-width-active: 2px;
+  --unified-field-transition-duration: 150ms;
+  --unified-field-transition-easing: cubic-bezier(0, 0.202, 0.204, 1);
+  --unified-field-label-scale: 0.75;
+  --unified-field-label-offset: 17px;
+  --unified-field-icon-size: 24px;
+  --unified-field-icon-offset: 12px;
+}
+
+// Общий контейнер для всех типов полей
+.field-container {
+  position: relative;
+  display: inline-flex;
+  width: 100%;
+  
+  // Общие переменные для состояний
+  --field-outline-width: var(--unified-field-border-width);
+  --field-outline-color: var(--form-color-outline);
+  --field-border-radius: var(--unified-field-border-radius);
+  --field-transition-easing: var(--unified-field-transition-easing);
+  
+  // Состояния
+  &:hover {
+    --field-outline-color: var(--form-color-outline-hover);
+  }
+  
+  &.field--focused {
+    --field-outline-width: var(--unified-field-border-width-active);
+    --field-outline-color: var(--form-color-outline-opened);
+  }
+  
+  &.field--filled {
+    --field-outline-width: var(--unified-field-border-width-active);
+    --field-outline-color: var(--form-color-activated);
+  }
+  
+  &.field--error {
+    --field-outline-color: var(--form-color-error);
+  }
+  
+  &.field--disabled {
+    --field-outline-color: var(--form-color-disabled);
+  }
+}
+
+// Унифицированный floating label
+.unified-floating-label {
+  position: absolute;
+  display: block;
+  pointer-events: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--form-color-label);
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  transform-origin: left top;
+  transition:
+    transform var(--unified-field-transition-duration) var(--unified-field-transition-easing),
+    color var(--unified-field-transition-duration) var(--unified-field-transition-easing);
+  text-align: left;
+  cursor: text;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0.009375em;
+  line-height: 23px;
+  left: var(--unified-field-label-offset);
+  max-width: calc(100% - 30px);
+  
+  // Состояния для всех типов полей
+  .field-container.field--focused &,
+  .field-container.field--filled & {
+    color: var(--form-color-focused);
+  }
+  
+  .field-container.field--error & {
+    color: var(--form-color-error);
+  }
+  
+  .field-container.field--disabled & {
+    color: var(--form-color-disabled);
+  }
+}
+
+// Унифицированный notched outline
+.unified-notched-outline {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  text-align: left;
+  pointer-events: none;
+  margin: auto;
+  display: grid;
+  grid-template: 1fr / 12px auto 1fr;
+  gap: 0;
+  
+  &__leading {
+    width: 12px;
+    height: 100%;
+    pointer-events: none;
+    box-sizing: border-box;
+    box-shadow:
+      inset 0 var(--field-outline-width) 0 0 var(--field-outline-color),
+      inset var(--field-outline-width) 0 0 0 var(--field-outline-color),
+      inset 0 calc(var(--field-outline-width) * -1) 0 0 var(--field-outline-color);
+    border-radius: var(--field-border-radius) 0 0 var(--field-border-radius);
+    transform: translate3d(0, 0, 0);
+    transition: box-shadow 225ms var(--field-transition-easing);
+  }
+  
+  &__notch {
+    width: auto;
+    height: 100%;
+    pointer-events: none;
+    box-sizing: border-box;
+    box-shadow:
+      inset 0 var(--field-outline-width) 0 0 var(--field-outline-color),
+      inset 0 calc(var(--field-outline-width) * -1) 0 0 var(--field-outline-color);
+    transition: box-shadow 225ms var(--field-transition-easing);
+    
+    // Убираем верхнюю границу когда поле заполнено или в фокусе
+    .field-container.field--focused &,
+    .field-container.field--filled & {
+      box-shadow: inset 0 calc(var(--field-outline-width) * -1) 0 0 var(--field-outline-color);
+    }
+  }
+  
+  &__trailing {
+    height: 100%;
+    pointer-events: none;
+    box-sizing: border-box;
+    box-shadow:
+      inset 0 var(--field-outline-width) 0 0 var(--field-outline-color),
+      inset calc(var(--field-outline-width) * -1) 0 0 0 var(--field-outline-color),
+      inset 0 calc(var(--field-outline-width) * -1) 0 0 var(--field-outline-color);
+    border-radius: 0 var(--field-border-radius) var(--field-border-radius) 0;
+    transform: translate3d(0, 0, 0);
+    transition: box-shadow 225ms var(--field-transition-easing);
+  }
+}
+
+// Специфичные стили для Input
+.field-container.input-field {
+  .unified-floating-label {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  &.field--focused .unified-floating-label,
+  &.field--filled .unified-floating-label {
+    transform: translateY(-33px) scale(var(--unified-field-label-scale));
+  }
+  
+  // Модификаторы размера
+  &.input--dense {
+    .unified-floating-label {
+      &.field--focused,
+      &.field--filled {
+        transform: translateY(-27px) scale(var(--unified-field-label-scale));
+      }
+    }
+  }
+  
+  &.input--large {
+    .unified-floating-label {
+      &.field--focused,
+      &.field--filled {
+        transform: translateY(-44px) scale(var(--unified-field-label-scale));
+      }
+    }
+  }
+  
+  // Модификаторы иконок
+  &.input--leading-icon {
+    .unified-floating-label {
+      left: calc(var(--unified-field-label-offset) + var(--unified-field-icon-size) + var(--unified-field-icon-offset));
+      max-width: calc(100% - 66px);
+      
+      &.field--focused,
+      &.field--filled {
+        transform: translateY(-33px) translateX(-27px) scale(var(--unified-field-label-scale));
+      }
+    }
+  }
+  
+  &.input--trailing-icon {
+    .unified-floating-label {
+      max-width: calc(100% - 66px);
+    }
+  }
+  
+  &.input--leading-icon.input--trailing-icon {
+    .unified-floating-label {
+      max-width: calc(100% - 84px);
+      
+      &.field--focused,
+      &.field--filled {
+        transform: translateY(-33px) translateX(-27px) scale(var(--unified-field-label-scale));
+      }
+    }
+  }
+}
+
+// Специфичные стили для Textarea
+.field-container.textarea-field {
+  .unified-floating-label {
+    top: 13px;
+  }
+  
+  &.field--focused .unified-floating-label,
+  &.field--filled .unified-floating-label {
+    transform: translateY(-22px) scale(var(--unified-field-label-scale));
+  }
+}
+
+// Специфичные стили для Select
+.field-container.select-field {
+  .unified-floating-label {
+    inset: 50% auto auto var(--unified-field-label-offset);
+    max-width: calc(100% - 51px);
+    transform: translateY(-50%);
+  }
+  
+  &.field--selected .unified-floating-label {
+    color: var(--form-color-label-selected);
+    transform: translateY(-30px) scale(var(--unified-field-label-scale));
+  }
+  
+  &.field--opened .unified-floating-label {
+    color: var(--form-color-label-opened);
+    transform: translateY(-30px) scale(var(--unified-field-label-scale));
+  }
+  
+  &.select--dense {
+    .unified-floating-label {
+      &.field--selected,
+      &.field--opened {
+        transform: translateY(-24px) scale(var(--unified-field-label-scale));
+      }
+    }
+  }
+  
+  // Специальная обработка для select без label
+  &.select--unlabeled {
+    box-shadow: inset 0 0 0 var(--field-outline-width) var(--field-outline-color);
+    border-radius: var(--field-border-radius);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+// Общие стили для полей ввода
+.unified-field-input {
+  display: flex;
+  z-index: 1;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  border: none;
+  border-radius: 0;
+  background: none;
+  appearance: none;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0.009375em;
+  color: var(--form-color-text-field);
+  
+  &:focus {
+    outline: none;
+  }
+  
+  .field-container.field--focused & {
+    caret-color: var(--form-color-focused);
+  }
+  
+  .field-container.field--error & {
+    caret-color: var(--form-color-error);
+  }
+  
+  .field-container.field--disabled & {
+    color: var(--form-color-disabled);
+  }
+}
+
+// Стили для иконок
+.unified-field-icon {
+  width: var(--unified-field-icon-size);
+  height: var(--unified-field-icon-size);
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  fill: var(--form-color-text-field);
+  
+  .field-container.field--focused & {
+    fill: var(--form-color-focused);
+  }
+  
+  .field-container.field--error & {
+    fill: var(--form-color-error);
+  }
+  
+  .field-container.field--disabled & {
+    fill: var(--form-color-disabled);
+  }
+  
+  &.icon--leading {
+    left: var(--unified-field-icon-offset);
+  }
+  
+  &.icon--trailing {
+    right: var(--unified-field-icon-offset);
+  }
+} 
