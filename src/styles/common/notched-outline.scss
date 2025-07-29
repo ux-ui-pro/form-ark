@@ -1,14 +1,18 @@
+// Единые стили для notched-outline
+// Используется в текстовых полях и селектах
+// Единый подход: box-shadow + grid layout
+
+// Базовые стили для всех notched-outline
 .notched-outline {
-  display: flex;
   position: absolute;
-  right: 0;
-  left: 0;
+  inset: 0;
   z-index: 1;
   width: 100%;
   height: 100%;
   max-width: 100%;
   text-align: left;
   pointer-events: none;
+  margin: auto;
 
   &__leading {
     width: 12px;
@@ -18,7 +22,6 @@
   }
 
   &__notch {
-    flex: 0 0 auto;
     width: auto;
     height: 100%;
     pointer-events: none;
@@ -26,124 +29,134 @@
   }
 
   &__trailing {
-    flex-grow: 1;
     height: 100%;
     pointer-events: none;
     box-sizing: border-box;
   }
 }
 
+// Flex layout для текстовых полей
+.text-field-container .notched-outline {
+  display: flex;
+
+  &__notch {
+    flex: 0 0 auto;
+  }
+
+  &__trailing {
+    flex-grow: 1;
+  }
+}
+
+// Grid layout для селектов
+.select-option .notched-outline {
+  display: grid;
+  grid-template: 1fr / 12px auto 1fr;
+  gap: 0;
+}
+
+// Единые стили для всех компонентов с box-shadow
 .notched-outline {
   &__leading {
-    border-top: var(--tf-border-width-inactive) solid;
-    border-right: none;
-    border-bottom: var(--tf-border-width-inactive) solid;
-    border-left: var(--tf-border-width-inactive) solid;
-    border-radius: var(--tf-border-radius) 0 0 var(--tf-border-radius);
-    border-color: var(--tf-c-border);
-    transition: border-color 225ms var(--tf-transition-easing);
+    box-shadow:
+      inset 0 var(--notch-outline-width, 1px) 0 0 var(--notch-outline-color, DarkGray),
+      inset var(--notch-outline-width, 1px) 0 0 0 var(--notch-outline-color, DarkGray),
+      inset 0 calc(var(--notch-outline-width, 1px) * -1) 0 0 var(--notch-outline-color, DarkGray);
+    border-radius: var(--notch-border-radius, 6px) 0 0 var(--notch-border-radius, 6px);
+    transform: translate3d(0, 0, 0);
+    transition: box-shadow 225ms var(--notch-transition-easing, cubic-bezier(0, 0.202, 0.204, 1));
   }
 
   &__notch {
-    border-top: var(--tf-border-width-inactive) solid;
-    border-bottom: var(--tf-border-width-inactive) solid;
-    border-color: var(--tf-c-border);
-    transition: border-color 225ms var(--tf-transition-easing);
+    box-shadow:
+      inset 0 var(--notch-outline-width, 1px) 0 0 var(--notch-outline-color, DarkGray),
+      inset 0 calc(var(--notch-outline-width, 1px) * -1) 0 0 var(--notch-outline-color, DarkGray);
+    transition: box-shadow 225ms var(--notch-transition-easing, cubic-bezier(0, 0.202, 0.204, 1));
 
     .input--focused &,
     .input--filled &,
     .textarea--focused &,
     .textarea--filled & {
-      border-top: none;
-      align-items: flex-start;
+      box-shadow: inset 0 calc(var(--notch-outline-width, 1px) * -1) 0 0 var(--notch-outline-color, DarkGray);
     }
   }
 
   &__trailing {
-    border-top: var(--tf-border-width-inactive) solid;
-    border-right: var(--tf-border-width-inactive) solid;
-    border-bottom: var(--tf-border-width-inactive) solid;
-    border-left: none;
-    border-radius: 0 var(--tf-border-radius) var(--tf-border-radius) 0;
-    border-color: var(--tf-c-border);
-    transition: border-color 225ms var(--tf-transition-easing);
-  }
-
-  .input--focused &__leading,
-  .input--focused &__notch,
-  .input--focused &__trailing,
-  .input--filled &__leading,
-  .input--filled &__notch,
-  .input--filled &__trailing,
-  .textarea--focused &__leading,
-  .textarea--focused &__notch,
-  .textarea--focused &__trailing,
-  .textarea--filled &__leading,
-  .textarea--filled &__notch,
-  .textarea--filled &__trailing {
-    border-width: var(--tf-border-width-active);
+    box-shadow:
+      inset 0 var(--notch-outline-width, 1px) 0 0 var(--notch-outline-color, DarkGray),
+      inset calc(var(--notch-outline-width, 1px) * -1) 0 0 0 var(--notch-outline-color, DarkGray),
+      inset 0 calc(var(--notch-outline-width, 1px) * -1) 0 0 var(--notch-outline-color, DarkGray);
+    border-radius: 0 var(--notch-border-radius, 6px) var(--notch-border-radius, 6px) 0;
+    transform: translate3d(0, 0, 0);
+    transition: box-shadow 225ms var(--notch-transition-easing, cubic-bezier(0, 0.202, 0.204, 1));
   }
 }
 
+// Специфичные стили для текстовых полей
+.text-field-container {
+  --notch-outline-width: var(--tf-border-width-inactive, 1px);
+  --notch-outline-color: var(--form-color-outline);
+  --notch-border-radius: var(--tf-border-radius, 6px);
+  --notch-transition-easing: var(--tf-transition-easing, cubic-bezier(0, 0.202, 0.204, 1));
+
+  &:hover {
+    --notch-outline-color: var(--form-color-outline-hover);
+  }
+
+  .input--focused &,
+  .textarea--focused & {
+    --notch-outline-width: var(--tf-border-width-active, 2px);
+    --notch-outline-color: var(--form-color-outline-opened);
+  }
+
+  .input--filled &,
+  .textarea--filled & {
+    --notch-outline-width: var(--tf-border-width-active, 2px);
+    --notch-outline-color: var(--form-color-activated);
+  }
+
+  .input--error &,
+  .textarea--error & {
+    --notch-outline-color: var(--form-color-error);
+  }
+
+  .input--disabled &,
+  .textarea--disabled & {
+    --notch-outline-color: var(--form-color-disabled);
+  }
+}
+
+// Специфичные стили для селектов
 .select-option {
-  --so-width-outline: 1px;
+  --notch-outline-width: var(--so-width-outline, 1px);
+  --notch-outline-color: var(--form-color-outline);
+  --notch-border-radius: var(--so-border-radius-select, 5.5px);
+  --notch-transition-easing: cubic-bezier(0, 0.202, 0.204, 1);
 
   &--labeled {
-    .notched-outline {
-      display: grid;
-      grid-template: 1fr / 12px auto 1fr;
-      gap: 0;
-      margin: auto;
-      inset: 0;
-
-      &__leading {
-        box-shadow:
-          inset 0 var(--so-width-outline) 0 0 var(--so-color-outline, DarkGray),
-          inset var(--so-width-outline) 0 0 0 var(--so-color-outline, DarkGray),
-          inset 0 calc(var(--so-width-outline) * -1) 0 0 var(--so-color-outline, DarkGray);
-        border-radius: var(--so-border-radius-select, 5.5px) 0 0 var(--so-border-radius-select, 5.5px);
-        transform: translate3d(0, 0, 0);
-      }
-
-      &__notch {
-        box-shadow:
-          inset 0 var(--so-width-outline) 0 0 var(--so-color-outline, DarkGray),
-          inset 0 calc(var(--so-width-outline) * -1) 0 0 var(--so-color-outline, DarkGray);
-      }
-
-      &__trailing {
-        box-shadow:
-          inset 0 var(--so-width-outline) 0 0 var(--so-color-outline, DarkGray),
-          inset calc(var(--so-width-outline) * -1) 0 0 0 var(--so-color-outline, DarkGray),
-          inset 0 calc(var(--so-width-outline) * -1) 0 0 var(--so-color-outline, DarkGray);
-        border-radius: 0 var(--so-border-radius-select, 5.5px) var(--so-border-radius-select, 5.5px) 0;
-        transform: translate3d(0, 0, 0);
-      }
-    }
-
     &.select-option--opened .notched-outline__notch,
     &.select-option--selected .notched-outline__notch {
-      box-shadow: inset 0 calc(var(--so-width-outline) * -1) 0 0 var(--so-color-outline, DarkGray);
+      box-shadow: inset 0 calc(var(--notch-outline-width) * -1) 0 0 var(--notch-outline-color);
     }
   }
 
   &--unlabeled {
-    box-shadow: inset 0 0 0 var(--so-width-outline) var(--so-color-outline, DarkGray);
-    border-radius: var(--so-border-radius-select, 5.5px);
+    box-shadow: inset 0 0 0 var(--notch-outline-width) var(--notch-outline-color);
+    border-radius: var(--notch-border-radius);
     transform: translate3d(0, 0, 0);
   }
 
   &:not(&--opened):hover {
-    --so-color-outline: var(--so-color-outline-hover, SlateGrey);
+    --notch-outline-color: var(--form-color-outline-hover);
 
     &.select-option--mobile {
-      --so-color-outline: var(--so-color-outline-opened, DodgerBlue);
-      --so-width-outline: 2px;
+      --notch-outline-color: var(--form-color-outline-opened);
+      --notch-outline-width: 2px;
     }
   }
 
   &--opened {
-    --so-color-outline: var(--so-color-outline-opened, DodgerBlue);
-    --so-width-outline: 2px;
+    --notch-outline-color: var(--form-color-outline-opened);
+    --notch-outline-width: 2px;
   }
 }

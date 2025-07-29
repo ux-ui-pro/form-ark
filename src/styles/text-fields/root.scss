@@ -1,15 +1,15 @@
 .text-field-container {
-	// Colors
-	--tf-c-text-field: slategrey;
-	--tf-c-text-helper: slategrey;
-	--tf-c-inactive: darkgray;
-	--tf-c-focused: dodgerblue;
-	--tf-c-activated: gray;
-	--tf-c-hover: dimgray;
-	--tf-c-error: crimson;
-	--tf-c-disabled: silver;
-	--tf-c-placeholder: silver;
-	--tf-c-border: var(--tf-c-inactive); // redefined when manipulating text fields
+	// Colors (используем единые переменные)
+	--tf-c-text-field: var(--form-color-text);
+	--tf-c-text-helper: var(--form-color-text-helper);
+	--tf-c-inactive: var(--form-color-inactive);
+	--tf-c-focused: var(--form-color-focused);
+	--tf-c-activated: var(--form-color-activated);
+	--tf-c-hover: var(--form-color-hover);
+	--tf-c-error: var(--form-color-error);
+	--tf-c-disabled: var(--form-color-disabled);
+	--tf-c-placeholder: var(--form-color-placeholder);
+	--tf-c-border: var(--form-color-border);
 
 	// Font
 	--tf-font-size-field: 16px;

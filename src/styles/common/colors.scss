@@ -1,0 +1,34 @@
+// Единая система цветов для всех компонентов форм
+// Объединяет цвета текстовых полей (--tf-c-*) и селектов (--so-color-*)
+
+:root {
+  // Основные цвета
+  --form-color-text: slategrey;
+  --form-color-text-helper: slategrey;
+  --form-color-inactive: darkgray;
+  --form-color-focused: dodgerblue;
+  --form-color-activated: gray;
+  --form-color-hover: dimgray;
+  --form-color-error: crimson;
+  --form-color-disabled: silver;
+  --form-color-placeholder: silver;
+  --form-color-border: var(--form-color-inactive);
+
+  // Цвета для floating-label
+  --form-color-label: var(--form-color-text);
+  --form-color-label-selected: darkgray;
+  --form-color-label-opened: var(--form-color-focused);
+
+  // Цвета для outline/notched
+  --form-color-outline: var(--form-color-inactive);
+  --form-color-outline-hover: var(--form-color-hover);
+  --form-color-outline-opened: var(--form-color-focused);
+
+  // Цвета для селектов (специфичные)
+  --form-color-trigger: gray;
+  --form-color-list-item: gray;
+  --form-color-list-item-selected: white;
+  --form-color-scrollbar-thumb: silver;
+  --form-color-scrollbar-track: white;
+  --form-color-scrollbar-hover: gray;
+} 
