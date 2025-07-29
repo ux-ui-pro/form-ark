@@ -1,0 +1,35 @@
+.tickbox {
+	input[type='checkbox']:not(:disabled, [role="switch"]):focus,
+	input[type='radio']:not(:disabled, [role="switch"]):focus {
+		border-radius: 100px;
+		appearance: none; // otherwise iOS will not render the box-shadow property
+
+		&:checked {
+			animation: rippleChecked var(--tickbox-transition-duration) var(--tickbox-transition-timing) forwards;
+		}
+
+		&:not(:checked) {
+			animation: rippleUnchecked var(--tickbox-transition-duration) var(--tickbox-transition-timing) forwards;
+		}
+	}
+
+	@keyframes rippleChecked {
+		from {
+			box-shadow: inset 0 0 0 24px var(--tickbox-color-active-highlight);
+		}
+
+		to {
+			box-shadow: inset 0 0 0 24px transparent;
+		}
+	}
+
+	@keyframes rippleUnchecked {
+		from {
+			box-shadow: inset 0 0 0 24px var(--tickbox-color-inactive-highlight);
+		}
+
+		to {
+			box-shadow: inset 0 0 0 24px transparent;
+		}
+	}
+}

@@ -1,0 +1,71 @@
+.notched-outline {
+	display: flex;
+	position: absolute;
+	right: 0; left: 0;
+	z-index: 1;
+	width: 100%; height: 100%;
+	max-width: 100%;
+	text-align: left;
+	pointer-events: none;
+
+	&__leading {
+		width: 12px; height: 100%;
+		pointer-events: none;
+		border-top: var(--tf-border-width-inactive) solid;
+		border-right: none;
+		border-bottom: var(--tf-border-width-inactive) solid;
+		border-left: var(--tf-border-width-inactive) solid;
+		border-radius: var(--tf-border-radius) 0 0 var(--tf-border-radius);
+		border-color: var(--tf-c-border);
+		box-sizing: border-box;
+		transition: border-color 225ms var(--tf-transition-easing);
+	}
+
+	&__notch {
+		flex: 0 0 auto;
+		width: auto; height: 100%;
+		pointer-events: none;
+		border-top: var(--tf-border-width-inactive) solid;
+		border-bottom: var(--tf-border-width-inactive) solid;
+		border-color: var(--tf-c-border);
+		box-sizing: border-box;
+		transition: border-color 225ms var(--tf-transition-easing);
+
+		.input--focused &,
+		.input--filled &,
+		.textarea--focused &,
+		.textarea--filled & {
+			border-top: none;
+			align-items: flex-start;
+		}
+	}
+
+	&__trailing {
+		flex-grow: 1;
+		height: 100%;
+		pointer-events: none;
+		border-top: var(--tf-border-width-inactive) solid;
+		border-right: var(--tf-border-width-inactive) solid;
+		border-bottom: var(--tf-border-width-inactive) solid;
+		border-left: none;
+		border-radius: 0 var(--tf-border-radius) var(--tf-border-radius) 0;
+		border-color: var(--tf-c-border);
+		box-sizing: border-box;
+		transition: border-color 225ms var(--tf-transition-easing);
+	}
+
+	.input--focused &__leading,
+	.input--focused &__notch,
+	.input--focused &__trailing,
+	.input--filled &__leading,
+	.input--filled &__notch,
+	.input--filled &__trailing,
+	.textarea--focused &__leading,
+	.textarea--focused &__notch,
+	.textarea--focused &__trailing,
+	.textarea--filled &__leading,
+	.textarea--filled &__notch,
+	.textarea--filled &__trailing {
+		border-width: var(--tf-border-width-active);
+	}
+}

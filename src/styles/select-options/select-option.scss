@@ -1,0 +1,38 @@
+.select-option {
+  position: relative;
+  width: 100%;
+  cursor: pointer;
+  font-weight: 400;
+  font-size: 16px;
+  letter-spacing: 0.009375em;
+
+  select {
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    z-index: 1;
+    border-radius: 0;
+    opacity: 0;
+    appearance: none;
+    outline: none;
+    border: none;
+    -webkit-tap-highlight-color: transparent;
+    background-clip: padding-box;
+
+    &:focus {
+      outline: none;
+      border: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+  }
+
+  &:not(&--mobile) {
+    select {
+      display: none;
+    }
+  }
+
+  &--opened {
+    z-index: 2;
+  }
+}

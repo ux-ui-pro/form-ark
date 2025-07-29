@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
+  <title>form-ark</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+  <link href="https://esm.sh/typographics/dist/index.css" rel="stylesheet">
+  <link href="https://esm.sh/the-new-css-reset@1.11.3/css/reset.css" rel="stylesheet">
+  <style>
+    :root {
+      --t-base-font-family: "Inter";
+      --t-font-size-min-scale: 0.5;
+      --t-font-size-max-scale: 1;
+      --t-font-scale-min-width: 600;
+      --t-font-scale-max-width: 1400;
+      --t-line-height-body: 1.5;
+      --t-line-height-heading: 1.3em;
+    }
+
+    body {
+      padding: 20px;
+    }
+
+    hr {
+      height: 20px;
+    }
+  </style>
+  <script type="module">
+    import './src/styles/index.scss';
+  </script>
+</head>
+<body>
+  <div class="text-field-container">
+    <div class="input input--trailing-icon">
+      <svg class="input__icon">
+        <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM8.5 8c.83 0 1.5.67 1.5 1.5S9.33 11 8.5 11 7 10.33 7 9.5 7.67 8 8.5 8zM12 18c-2.28 0-4.22-1.66-5-4h10c-.78 2.34-2.72 4-5 4zm3.5-7c-.83 0-1.5-.67-1.5-1.5S14.67 8 15.5 8s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"></path>
+      </svg>
+      <label class="floating-label" for="t3i">Trailing error</label>
+      <input type="text" id="t3i" required="required"/>
+    </div>
+  </div>
+  <hr/>
+  <div class="select-option-container">
+    <div class="select-option">
+      <label class="floating-label">Matrix</label>
+      <select name="matrix">
+        <option value="" hidden="hidden"></option>
+        <option value="cypher" data-custom="cypher">Cypher</option>
+        <option value="tank" data-custom="tank">Tank</option>
+        <option value="dozer" data-custom="dozer">Dozer</option>
+        <option value="mouse" data-custom="mouse">Mouse</option>
+        <option value="apoc" data-custom="apoc" selected="selected">Apoc</option>
+        <option value="switch" data-custom="switch">Switch</option>
+      </select>
+    </div>
+  </div>
+  <hr/>
+  <div class="select-option-container">
+    <div class="select-option">
+      <label class="floating-label">Text field dense</label>
+      <select name="select">
+        <option value="" selected="selected" hidden="hidden"></option>
+        <option value="value1" data-custom="value1">Value 1</option>
+        <option value="value2" data-custom="value2">Value 2</option>
+        <option value="value3" data-custom="value3">Value 3</option>
+        <option value="value4" data-custom="value4">Value 4</option>
+        <option value="value5" data-custom="value5">Value 5</option>
+        <option value="value6" data-custom="value6">Value 6</option>
+        <option value="value7" data-custom="value7">Value 7</option>
+        <option value="value8" data-custom="value8">Value 8</option>
+        <option value="value9" data-custom="value9">Value 9</option>
+      </select>
+    </div>
+  </div>
+  <hr/>
+  <div class="select-option-container">
+    <div class="select-option select-option--dense">
+      <select name="cars">
+        <option value="koenigsegg" data-custom="koenigsegg">Koenigsegg</option>
+        <option value="pagani" data-custom="pagani" selected="selected">Pagani</option>
+        <option value="ferrari" data-custom="ferrari">Ferrari</option>
+      </select>
+    </div>
+  </div>
+  <hr/>
+  <div class="select-option-container">
+    <div class="select-option select-option--dense select-option--country">
+      <select name="country">
+        <option value="bw" data-custom="bw" selected="selected">Botswana</option>
+        <option value="mf" data-custom="mf">Saint Martin</option>
+        <option value="am" data-custom="am">Armenia</option>
+      </select>
+    </div>
+  </div>
+  <hr/>
+  <div class="select-option-container">
+    <div class="select-option select-option--dense">
+      <label class="floating-label">A very long label to demonstrate the overflow of textual content</label>
+      <select name="select">
+        <option value="" hidden="hidden"></option>
+        <option value="value1" data-custom="value1" selected="selected">Long option text showing overflow with text content of the short option</option>
+        <option value="value2" data-custom="value2">P Value 2</option>
+        <option value="value3" data-custom="value3">P Value 3</option>
+      </select>
+    </div>
+  </div>
+  <hr/>
+  <div class="select-option-container">
+    <div class="select-option select-option--dense">
+      <label class="floating-label">Text field dense</label>
+      <select name="select">
+        <option value="" selected="selected" hidden="hidden"></option>
+        <option value="value1" data-custom="value1">Value 1</option>
+        <option value="value2" data-custom="value2">Value 2</option>
+        <option value="value3" data-custom="value3">Value 3</option>
+      </select>
+    </div>
+  </div>
+  <hr/>
+  <div class="text-field-container">
+    <div class="textarea">
+      <label class="floating-label" for="ta5">Eerror</label>
+      <textarea id="ta5" name="story" required="required">Textarea error</textarea>
+    </div>
+    <div class="text-field-helper">
+      <div class="text-field-helper__text" role="alert">Error message</div>
+    </div>
+  </div>
+  <hr/>
+  <div class="tickbox-container">
+    <div class="tickbox">
+      <input type="checkbox" id="q1" name="" value="" role=""/>
+      <label for="q1"><span>Checkbox</span>
+      </label>
+    </div>
+    <div class="tickbox">
+      <input type="checkbox" id="q2" name="" value="" role="" checked="checked"/>
+      <label for="q2"><span>Checkbox adipisci aliquid amet animi aperiam aut consectetur adipisicing</span><span>Append text Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci aliquid amet animi aperiam aut.</span>
+      </label>
+    </div>
+    <div class="tickbox">
+      <input type="radio" id="q3" name="qw" value="1" role=""/>
+      <label for="q3"><span>Radio</span>
+      </label>
+    </div>
+    <div class="tickbox">
+      <input type="radio" id="q4" name="qw" value="1" role="" checked="checked"/>
+      <label for="q4"><span>Radio</span>
+      </label>
+    </div>
+    <div class="tickbox">
+      <input type="checkbox" id="q5" name="" value="" role="switch"/>
+      <label for="q5"><span>Switch checkbox adipisci aliquid amet animi aperiam aut consectetur adipisicing</span>
+      </label>
+    </div>
+    <div class="tickbox">
+      <input type="checkbox" id="q6" name="" value="" role="switch" checked="checked"/>
+      <label for="q6"><span>Switch checkbox</span>
+      </label>
+    </div>
+    <div class="tickbox">
+      <input type="radio" id="q7" name="er" value="2" role="switch"/>
+      <label for="q7"><span>Switch radio</span><span>Append text Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci aliquid amet animi aperiam aut.</span>
+      </label>
+    </div>
+    <div class="tickbox">
+      <input type="radio" id="q8" name="er" value="2" role="switch" checked="checked"/>
+      <label for="q8"><span>Switch radio</span><span>Append text Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci aliquid amet animi aperiam aut.</span>
+      </label>
+    </div>
+  </div>
+
+  <script type="module" src="./src/index.ts"></script>
+</body>
+</html>

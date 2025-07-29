@@ -1,0 +1,13 @@
+.text-field-container {
+	input {
+		&::placeholder {
+			color: var(--tf-c-placeholder);
+			opacity: 0;
+			transition: opacity 225ms var(--tf-transition-easing);
+		}
+
+		&:focus::placeholder {
+			opacity: 0.65;
+		}
+	}
+}
