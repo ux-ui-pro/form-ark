@@ -1,4 +1,7 @@
 export * from './core';
+
+import './styles/index.scss';
+
 import { Controls } from './controls/Controls';
 import { Input } from './text/Input';
 import { Textarea } from './text/Textarea';
