@@ -1,12 +1,12 @@
 import { createNotchedOutline, getNotchWidth, setNotchWidth } from '../utils/NotchedOutline';
 
-export class Input {
-  private inputs = Array.from(
-    document.querySelectorAll<HTMLInputElement>('.field-container input'),
+export class Textarea {
+  private textareas = Array.from(
+    document.querySelectorAll<HTMLTextAreaElement>('.form-item textarea'),
   );
 
-  private updateContainer(input: HTMLInputElement): void {
-    const container = input.closest('.field-container') as HTMLElement;
+  private updateContainer(textarea: HTMLTextAreaElement): void {
+    const container = textarea.closest('.form-item') as HTMLElement;
     if (!container) return;
     let notchedOutline = container.querySelector('.notched-outline') as HTMLElement;
     if (!notchedOutline) {
@@ -29,8 +29,8 @@ export class Input {
       }
     }
 
-    input.addEventListener('focus', () => {
-      container.classList.add('input--focused');
+    textarea.addEventListener('focus', () => {
+      container.classList.add('textarea--focused');
       if (notchedOutline) {
         const notch = notchedOutline.querySelector('.notched-outline__notch') as HTMLElement;
         if (notch) {
@@ -39,29 +39,34 @@ export class Input {
       }
     });
 
-    input.addEventListener('blur', () => {
-      container.classList.remove('input--focused');
+    textarea.addEventListener('blur', () => {
+      container.classList.remove('textarea--focused');
       if (notchedOutline) {
         const notch = notchedOutline.querySelector('.notched-outline__notch') as HTMLElement;
         if (notch) {
-          setNotchWidth(notch, input.value.trim() ? getNotchWidth(notch) : 'auto');
+          setNotchWidth(notch, textarea.value.trim() ? getNotchWidth(notch) : 'auto');
         }
       }
     });
 
-    input.addEventListener('change', () => {
-      container.classList.toggle('input--filled', input.value.trim().length > 0);
-      container.classList.toggle('input--disabled', input.disabled);
+    textarea.addEventListener('input', () => {
+      container.classList.toggle('textarea--filled', textarea.value.trim().length > 0);
+      container.classList.toggle('textarea--disabled', textarea.disabled);
+
+      if (container.classList.contains('textarea--auto-resizeable')) {
+        textarea.style.height = 'auto';
+        textarea.style.height = `${textarea.scrollHeight}px`;
+      }
     });
 
-    container.classList.toggle('input--filled', input.value.trim().length > 0);
-    container.classList.toggle('input--disabled', input.disabled);
+    container.classList.toggle('textarea--filled', textarea.value.trim().length > 0);
+    container.classList.toggle('textarea--disabled', textarea.disabled);
   }
 
   public init(): void {
     if (typeof document === 'undefined') return;
-    this.inputs.forEach((input) => {
-      this.updateContainer(input);
+    this.textareas.forEach((textarea) => {
+      this.updateContainer(textarea);
     });
   }
 }

@@ -1,0 +1,22 @@
+.control {
+	--control-color-active-h: 210;
+	--control-color-active-s: 100%;
+	--control-color-active-l: 56%;
+	--control-color-active-a: 1;
+	--control-color-active: hsla(var(--control-color-active-h) var(--control-color-active-s) var(--control-color-active-l) / var(--control-color-active-a));
+	--control-color-inactive-h: 0;
+	--control-color-inactive-s: 0%;
+	--control-color-inactive-l: 66%;
+	--control-color-inactive-a: 1;
+	--control-color-inactive: hsla(var(--control-color-inactive-h) var(--control-color-inactive-s) var(--control-color-inactive-l) / var(--control-color-inactive-a));
+	--control-color-active-highlight: hsla(var(--control-color-active-h) var(--control-color-active-s) var(--control-color-active-l) / 26%);
+	--control-color-inactive-highlight: hsla(var(--control-color-inactive-h) var(--control-color-inactive-s) var(--control-color-inactive-l) / 26%);
+	--control-color-disabled: silver;
+	--control-transition-duration: 475ms;
+	--control-transition-timing: cubic-bezier(0.4, 0.08, 0.38, 0.9);
+	--control-label-font-size: 15px;
+	--control-desc-font-size: 12px;
+	--control-label-font-color: black;
+	--control-desc-font-color: gray;
+	--control-disabled-font-color: silver;
+}

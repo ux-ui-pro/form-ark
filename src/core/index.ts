@@ -1,3 +1,3 @@
-export * from '../text';
-export * from '../select';
-export * from '../controls';
+export * from '../text‑field';
+export * from '../dropdown';
+export * from '../selection‑control';

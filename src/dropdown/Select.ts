@@ -13,7 +13,7 @@ export class Select {
   private mobileMode: boolean = false;
 
   private static CLASSES = {
-    selectContainer: 'field-container',
+    selectContainer: 'form-item',
     selectOption: 'select',
     floatingLabel: 'floating-label',
     selectOptionTrigger: 'select-option-trigger',

@@ -1,12 +1,12 @@
 import { createNotchedOutline, getNotchWidth, setNotchWidth } from '../utils/NotchedOutline';
 
-export class Textarea {
-  private textareas = Array.from(
-    document.querySelectorAll<HTMLTextAreaElement>('.field-container textarea'),
+export class Input {
+  private inputs = Array.from(
+    document.querySelectorAll<HTMLInputElement>('.form-item input'),
   );
 
-  private updateContainer(textarea: HTMLTextAreaElement): void {
-    const container = textarea.closest('.field-container') as HTMLElement;
+  private updateContainer(input: HTMLInputElement): void {
+    const container = input.closest('.form-item') as HTMLElement;
     if (!container) return;
     let notchedOutline = container.querySelector('.notched-outline') as HTMLElement;
     if (!notchedOutline) {
@@ -29,8 +29,8 @@ export class Textarea {
       }
     }
 
-    textarea.addEventListener('focus', () => {
-      container.classList.add('textarea--focused');
+    input.addEventListener('focus', () => {
+      container.classList.add('input--focused');
       if (notchedOutline) {
         const notch = notchedOutline.querySelector('.notched-outline__notch') as HTMLElement;
         if (notch) {
@@ -39,34 +39,29 @@ export class Textarea {
       }
     });
 
-    textarea.addEventListener('blur', () => {
-      container.classList.remove('textarea--focused');
+    input.addEventListener('blur', () => {
+      container.classList.remove('input--focused');
       if (notchedOutline) {
         const notch = notchedOutline.querySelector('.notched-outline__notch') as HTMLElement;
         if (notch) {
-          setNotchWidth(notch, textarea.value.trim() ? getNotchWidth(notch) : 'auto');
+          setNotchWidth(notch, input.value.trim() ? getNotchWidth(notch) : 'auto');
         }
       }
     });
 
-    textarea.addEventListener('input', () => {
-      container.classList.toggle('textarea--filled', textarea.value.trim().length > 0);
-      container.classList.toggle('textarea--disabled', textarea.disabled);
-
-      if (container.classList.contains('textarea--auto-resizeable')) {
-        textarea.style.height = 'auto';
-        textarea.style.height = `${textarea.scrollHeight}px`;
-      }
+    input.addEventListener('change', () => {
+      container.classList.toggle('input--filled', input.value.trim().length > 0);
+      container.classList.toggle('input--disabled', input.disabled);
     });
 
-    container.classList.toggle('textarea--filled', textarea.value.trim().length > 0);
-    container.classList.toggle('textarea--disabled', textarea.disabled);
+    container.classList.toggle('input--filled', input.value.trim().length > 0);
+    container.classList.toggle('input--disabled', input.disabled);
   }
 
   public init(): void {
     if (typeof document === 'undefined') return;
-    this.textareas.forEach((textarea) => {
-      this.updateContainer(textarea);
+    this.inputs.forEach((input) => {
+      this.updateContainer(input);
     });
   }
 }

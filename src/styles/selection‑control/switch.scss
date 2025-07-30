@@ -1,0 +1,50 @@
+.control {
+	input[role="switch"] {
+		width: 55px;
+		min-width: 55px;
+
+		&::before,
+		&::after {
+			--control-switch-color: var(--control-switch-color-inactive, var(--control-color-inactive));
+
+			border-color: var(--control-switch-color);
+			transition:
+				border-color 125ms ease,
+				background-color 125ms ease,
+				transform 125ms ease;
+		}
+
+		&::before {
+			width: 10px; height: 10px;
+			border-radius: var(--control-switch-mark-radius, 10px);
+			background-color: var(--control-switch-color);
+			transform: translateX(-6px);
+		}
+
+		&::after {
+			width: 36px; height: 24px;
+			border-radius: var(--control-switch-border-radius, 24px);
+			background-color: transparent;
+			border-width: var(--control-border-width, 2px);
+			border-style: solid;
+		}
+
+		&:checked {
+			&::before,
+			&::after {
+				--control-switch-color: var(--control-switch-color-active, var(--control-color-active));
+			}
+
+			&::before {
+				transform: translateX(6px) scale(1.4);
+			}
+		}
+
+		&:disabled {
+			&::before,
+			&::after {
+				--control-switch-color: var(--control-switch-color-disabled, var(--control-color-disabled));
+			}
+		}
+	}
+}

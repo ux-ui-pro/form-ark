@@ -2,13 +2,13 @@ export * from './core';
 
 import './styles/index.scss';
 
-import { Controls } from './controls/Controls';
-import { Input } from './text/Input';
-import { Textarea } from './text/Textarea';
-import { Select } from './select/Select';
+import { Control } from './selection‑control/Control';
+import { Input } from './text‑field/Input';
+import { Textarea } from './text‑field/Textarea';
+import { Select } from './dropdown/Select';
 
 function initFormElements(): void {
-  new Controls().init();
+  new Control().init();
   new Input().init();
   new Textarea().init();
   new Select().init();

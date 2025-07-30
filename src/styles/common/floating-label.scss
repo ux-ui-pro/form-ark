@@ -47,46 +47,14 @@
 
 .input {
   .floating-label {
-    top: 50%;
+    inset: 50% auto auto var(--floating-label-offset);
     transform: translateY(-50%);
-  }
-}
-
-.field-container {
-  &.input--focused .input .floating-label,
-  &.input--filled .input .floating-label {
-    transform: translateY(calc(var(--floating-label-input-offset) * -1)) scale(var(--floating-label-scale));
-    color: var(--form-color-focused);
-  }
-
-  &.input--error .input .floating-label {
-    color: var(--form-color-error);
-  }
-
-  &.input--disabled .input .floating-label {
-    color: var(--form-color-disabled);
   }
 }
 
 .textarea {
   .floating-label {
     top: 13px;
-  }
-}
-
-.field-container {
-  &.textarea--focused .textarea .floating-label,
-  &.textarea--filled .textarea .floating-label {
-    transform: translateY(calc(var(--floating-label-textarea-offset) * -1)) scale(var(--floating-label-scale));
-    color: var(--form-color-focused);
-  }
-
-  &.textarea--error .textarea .floating-label {
-    color: var(--form-color-error);
-  }
-
-  &.textarea--disabled .textarea .floating-label {
-    color: var(--form-color-disabled);
   }
 }
 
@@ -104,5 +72,37 @@
   &.select--opened .floating-label {
     color: var(--form-color-label-opened);
     transform: translateY(calc(var(--floating-label-select-offset) * -1)) scale(var(--floating-label-scale));
+  }
+}
+
+.form-item {
+  &.input--focused .input .floating-label,
+  &.input--filled .input .floating-label {
+    transform: translateY(calc(var(--floating-label-input-offset) * -1)) scale(var(--floating-label-scale));
+    color: var(--form-color-focused);
+  }
+
+  &.input--error .input .floating-label {
+    color: var(--form-color-error);
+  }
+
+  &.input--disabled .input .floating-label {
+    color: var(--form-color-disabled);
+  }
+}
+
+.form-item {
+  &.textarea--focused .textarea .floating-label,
+  &.textarea--filled .textarea .floating-label {
+    transform: translateY(calc(var(--floating-label-textarea-offset) * -1)) scale(var(--floating-label-scale));
+    color: var(--form-color-focused);
+  }
+
+  &.textarea--error .textarea .floating-label {
+    color: var(--form-color-error);
+  }
+
+  &.textarea--disabled .textarea .floating-label {
+    color: var(--form-color-disabled);
   }
 }

@@ -1,4 +1,4 @@
-.tickbox {
+.control {
 	label {
 		position: relative;
 		display: inline-flex;
@@ -6,10 +6,10 @@
 		justify-content: center;
 		overflow: hidden;
 		max-width: 100%;
-		font-weight: var(--tickbox-label-font-weight, 400);
+		font-weight: var(--control-label-font-weight, 400);
 		line-height: 150%;
-		font-size: var(--tickbox-label-font-size);
-		color: var(--tickbox-label-font-color);
+		font-size: var(--control-label-font-size);
+		color: var(--control-label-font-color);
 		letter-spacing: .01px;
 		-moz-osx-font-smoothing: grayscale;
 		-webkit-font-smoothing: antialiased;
@@ -29,18 +29,18 @@
 
 		span + span {
 			line-height: 125%;
-			font-size: var(--tickbox-desc-font-size);
-			color: var(--tickbox-desc-font-color);
-			font-weight: var(--tickbox-desc-font-weight, 400);
+			font-size: var(--control-desc-font-size);
+			color: var(--control-desc-font-color);
+			font-weight: var(--control-desc-font-weight, 400);
 		}
 	}
 
 	input:disabled + label {
 		pointer-events: none;
-		color: var(--tickbox-disabled-font-color);
+		color: var(--control-disabled-font-color);
 
 		span + span {
-			color: var(--tickbox-disabled-font-color);
+			color: var(--control-disabled-font-color);
 		}
 	}
 }

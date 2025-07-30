@@ -1,31 +1,31 @@
-.tickbox {
+.control {
 	input[type='radio']:not([role="switch"]) {
 		&::before,
 		&::after {
-			--tickbox-radio: var(--tickbox-color-inactive);
+			--control-radio: var(--control-color-inactive);
 
 			transition: border-color 90ms ease, background-color 90ms ease, transform 90ms ease;
 		}
 
 		&::before {
-			background-color: var(--tickbox-radio);
-			border-radius: var(--tickbox-radio-mark-radius, 10px);
+			background-color: var(--control-radio);
+			border-radius: var(--control-radio-mark-radius, 10px);
 			width: 10px; height: 10px;
 			transform: scale(0);
 		}
 
 		&::after {
-			border-width: var(--tickbox-border-width, 2px);
+			border-width: var(--control-border-width, 2px);
 			border-style: solid;
-			border-color: var(--tickbox-radio);
-			border-radius: var(--tickbox-radio-border-radius, 20px);
+			border-color: var(--control-radio);
+			border-radius: var(--control-radio-border-radius, 20px);
 			width: 20px; height: 20px;
 		}
 
 		&:checked {
 			&::before,
 			&::after {
-				--tickbox-radio: var(--tickbox-color-active);
+				--control-radio: var(--control-color-active);
 			}
 
 			&::before {
@@ -36,7 +36,7 @@
 		&:disabled {
 			&::before,
 			&::after {
-				--tickbox-radio: var(--tickbox-color-disabled);
+				--control-radio: var(--control-color-disabled);
 			}
 		}
 	}
