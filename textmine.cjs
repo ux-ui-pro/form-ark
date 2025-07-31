@@ -5,7 +5,7 @@
 const fs = require('fs').promises;
 const path = require('path');
 
-const IGNORED_DIRS = ['node_modules', 'images', 'layout', 'mixins', 'vendor'];
+const IGNORED_DIRS = ['node_modules', 'images', 'layout', 'styles', 'vendor', 'dist', '.git', '.idea'];
 const IGNORED_FILES = ['yarn.lock'];
 
 function getTimestamp() {

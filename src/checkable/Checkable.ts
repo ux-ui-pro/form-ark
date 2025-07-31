@@ -1,21 +1,21 @@
-export class Control {
+export class Checkable {
   private containerSelector: string;
-  private controlBoxContainers: Element[];
+  private checkableBoxContainers: Element[];
 
-  constructor(containerSelector: string = '.control-container') {
+  constructor(containerSelector: string = '.form-item') {
     this.containerSelector = containerSelector;
     if (typeof document !== 'undefined') {
-      this.controlBoxContainers = Array.from(document.querySelectorAll(this.containerSelector));
+      this.checkableBoxContainers = Array.from(document.querySelectorAll(this.containerSelector));
     } else {
-      this.controlBoxContainers = [];
+      this.checkableBoxContainers = [];
     }
   }
 
   public init(): void {
-    if (!this.controlBoxContainers.length) {
+    if (!this.checkableBoxContainers.length) {
       return;
     }
-    this.controlBoxContainers.forEach((container) => {
+    this.checkableBoxContainers.forEach((container) => {
       const checkboxes = Array.from(
         container.querySelectorAll<HTMLInputElement>('input[type="checkbox"]'),
       );
@@ -23,7 +23,7 @@ export class Control {
         container.querySelectorAll<HTMLInputElement>('input[type="radio"]'),
       );
 
-      Control.addAriaCheckedAttribute([...checkboxes, ...radios]);
+      Checkable.addAriaCheckedAttribute([...checkboxes, ...radios]);
 
       container.addEventListener('click', (event: Event) => {
         const target = event.target as Element;
@@ -31,7 +31,7 @@ export class Control {
           target instanceof HTMLInputElement &&
           (target.type === 'checkbox' || target.type === 'radio')
         ) {
-          Control.controlBoxAriaCheckedAttribute(target, container);
+          Checkable.checkableBoxAriaCheckedAttribute(target, container);
         }
       });
     });
@@ -43,7 +43,7 @@ export class Control {
     });
   }
 
-  private static controlBoxAriaCheckedAttribute(input: HTMLInputElement, container: Element): void {
+  private static checkableBoxAriaCheckedAttribute(input: HTMLInputElement, container: Element): void {
     const groupName = input.getAttribute('name');
     if (groupName) {
       const groupInputs = container.querySelectorAll<HTMLInputElement>(

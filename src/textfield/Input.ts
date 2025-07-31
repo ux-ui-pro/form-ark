@@ -2,7 +2,7 @@ import { createNotchedOutline, getNotchWidth, setNotchWidth } from '../utils/Not
 
 export class Input {
   private inputs = Array.from(
-    document.querySelectorAll<HTMLInputElement>('.form-item input'),
+    document.querySelectorAll<HTMLInputElement>('.form-item input[type="text"], .form-item input[type="email"], .form-item input[type="password"], .form-item input[type="search"], .form-item input[type="tel"], .form-item input[type="url"], .form-item input[type="number"], .form-item input:not([type])'),
   );
 
   private updateContainer(input: HTMLInputElement): void {

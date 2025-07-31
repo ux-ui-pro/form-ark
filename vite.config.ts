@@ -17,9 +17,9 @@ export default defineConfig({
     lib: {
       entry: {
         core: 'src/index.ts',
-        text: 'src/text/index.ts',
-        select: 'src/select/index.ts',
-        controls: 'src/controls/index.ts',
+        textfield: 'src/textfield/index.ts',
+        dropdown: 'src/dropdown/index.ts',
+        checkable: 'src/checkable/index.ts',
       },
       formats: ['es', 'cjs'],
       fileName: (format, entryName) => `${entryName}.${format}.js`,

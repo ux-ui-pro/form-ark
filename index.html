@@ -172,5 +172,38 @@
   </div>
 
   <script type="module" src="./src/index.ts"></script>
+
+  <script type="module">
+    if (import.meta.env.DEV) {
+      import('./src/checkable/Checkbox.js').then(({ Checkbox }) => {
+        import('./src/checkable/Radio.js').then(({ Radio }) => {
+          import('./src/checkable/Switch.js').then(({ Switch }) => {
+            import('./src/textfield/Input.js').then(({ Input }) => {
+              import('./src/textfield/Textarea.js').then(({ Textarea }) => {
+                import('./src/dropdown/Select.js').then(({ Select }) => {
+                  function initFormElements() {
+                    new Checkbox().init();
+                    new Radio().init();
+                    new Switch().init();
+                    new Input().init();
+                    new Textarea().init();
+                    new Select().init();
+                  }
+
+                  if (typeof document !== 'undefined') {
+                    if (document.readyState === 'loading') {
+                      document.addEventListener('DOMContentLoaded', initFormElements);
+                    } else {
+                      initFormElements();
+                    }
+                  }
+                });
+              });
+            });
+          });
+        });
+      });
+    }
+  </script>
 </body>
 </html>

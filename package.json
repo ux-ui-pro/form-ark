@@ -1,6 +1,6 @@
 {
   "name": "form-ark",
-  "version": "1.0.0-dev.9",
+  "version": "1.0.0-dev.11",
   "description": "",
   "author": "ux-ui.pro",
   "license": "MIT",
@@ -33,17 +33,17 @@
       "import": "./dist/core.es.js",
       "require": "./dist/core.cjs.js"
     },
-    "./text": {
-      "import": "./dist/text.es.js",
-      "require": "./dist/text.cjs.js"
+    "./textfield": {
+      "import": "./dist/textfield.es.js",
+      "require": "./dist/textfield.cjs.js"
     },
-    "./select": {
-      "import": "./dist/select.es.js",
-      "require": "./dist/select.cjs.js"
+    "./dropdown": {
+      "import": "./dist/dropdown.es.js",
+      "require": "./dist/dropdown.cjs.js"
     },
-    "./controls": {
-      "import": "./dist/controls.es.js",
-      "require": "./dist/controls.cjs.js"
+    "./checkable": {
+      "import": "./dist/checkable.es.js",
+      "require": "./dist/checkable.cjs.js"
     },
     "./dist/*": "./dist/*"
   },
